@@ -10,7 +10,7 @@
 :root{--moss:#4a6741;--cream:#faf6f0;--blush:#e8c5b0;--rose:#c49a8a;--bark:#5c4033;--soft:#fdfaf6}
 body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--bark)}
 nav{background:var(--soft);border-bottom:2px solid #e8ddd4;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:78px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(92,64,51,.08)}
-.nav-logo img{height:64px;mix-blend-mode:multiply;filter:none;transition:opacity .2s}
+.nav-logo img{height:64px;mix-blend-mode:multiply;filter:contrast(1.05);transition:opacity .2s}
 .nav-logo img:hover{opacity:.85}
 .nav-links{display:flex;gap:1.5rem;list-style:none}
 .nav-links a{text-decoration:none;color:var(--bark);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700;transition:color .2s}
@@ -26,11 +26,15 @@ nav{background:var(--soft);border-bottom:2px solid #e8ddd4;padding:0 1.5rem;disp
 .strip{background:var(--moss);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
 .strip p{color:#c8ddc5;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
 .hero{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(160deg,#ddecd9,#f5efe8,#e8d9c8)}
-.hero-imgs{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;height:100%}
-.hero-imgs img{width:100%;height:100%;object-fit:cover}
-.hero-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(221,236,217,.92),rgba(245,239,232,.87),rgba(232,217,200,.92))}
+.hero-imgs{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr 1fr;height:100%;gap:0}
+.hero-imgs img{width:100%;height:100%;object-fit:cover;object-position:center center}
+.hero-imgs img:first-child{object-position:30% center}
+.hero-imgs img:last-child{object-position:70% center}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(221,236,217,.78),rgba(245,239,232,.72),rgba(232,217,200,.78))}
 .hero-content{position:relative;z-index:2;padding:2rem;max-width:660px;display:flex;flex-direction:column;align-items:center;gap:1.3rem}
-.hero-logo{width:min(360px,82vw);mix-blend-mode:multiply}
+.hero-logo-wrap{background:transparent;display:flex;align-items:center;justify-content:center}
+.hero-logo{width:min(340px,75vw);mix-blend-mode:multiply;filter:contrast(1.08) saturate(1.05);display:block}
+.hero-logo-wrap{isolation:isolate;background:rgba(245,239,232,0);border-radius:4px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .btn-p{display:inline-block;background:var(--moss);color:#fff;padding:13px 32px;border-radius:30px;text-decoration:none;font-size:.9rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s,transform .15s}
 .btn-p:hover{background:var(--bark);transform:translateY(-2px)}
@@ -171,7 +175,7 @@ footer p{font-size:.8rem;line-height:1.7;margin-bottom:1rem}
   <div class="hero-imgs" id="heroImgs"></div>
   <div class="hero-ov"></div>
   <div class="hero-content">
-    <img class="hero-logo" id="heroLogo" src="" alt="Imagine That!">
+    <div class="hero-logo-wrap"><img class="hero-logo" id="heroLogo" src="" alt="Imagine That!"></div>
     <div class="hero-btns">
       <a href="#shop" class="btn-p">Shop the Garden</a>
       <a href="#gallery" class="btn-o">Past Creations</a>
