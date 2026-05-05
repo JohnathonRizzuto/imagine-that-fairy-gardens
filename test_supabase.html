@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head><title>Supabase Test</title></head>
+<body>
+<h2>Testing Supabase Connection...</h2>
+<div id="result" style="font-family:monospace;font-size:1.1rem;padding:1rem;margin:1rem;border-radius:8px;background:#f0f0f0"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://bvxyzcgrgoaligxrgidf.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2eHl6Y2dyZ29hbGlneHJnaWRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5MzUzODYsImV4cCI6MjA5MzUxMTM4Nn0.fjKuBGq3ADYqhd0wCigao9xKGxn7UTfsAK1AP-eIshw';
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+async function test() {
+  const el = document.getElementById('result');
+  try {
+    const { data, error } = await supabase.from('store_settings').select('*');
+    if (error) {
+      el.style.background = '#fdf0ec';
+      el.style.color = '#c0392b';
+      el.innerHTML = '❌ Error: ' + error.message + '<br><br>Code: ' + error.code;
+    } else {
+      el.style.background = '#f0f7ee';
+      el.style.color = '#27ae60';
+      el.innerHTML = '✅ Connected! Found ' + data.length + ' rows.<br><br>' + JSON.stringify(data, null, 2);
+    }
+  } catch(e) {
+    el.style.background = '#fdf0ec';
+    el.style.color = '#c0392b';
+    el.innerHTML = '❌ Exception: ' + e.message;
+  }
+}
+test();
+</script>
+</body>
+</html>
